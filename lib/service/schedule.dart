@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
@@ -52,7 +53,12 @@ login() async {
     log(e.toString());
   }
 }
-
+int generateRandomValue() {
+  math.Random random = math.Random();
+  // Generate a random number between 1 and 5 (inclusive)
+  return random.nextInt(5) + 1;
+}
+List<String> items=["Ann Mery Joseph","Jeorge Sebastian","Leela Thomas","Martin Thomas","JeevaPrasad K S"];
 scheduleTrip() async {
   Dio dio = Dio();
   String key = await storage.read("KEY");
@@ -60,18 +66,18 @@ scheduleTrip() async {
 
   String authToken = await storage.read("AUTH_TOKEN");
   log(authToken.toString());
-  var body =''' {
-    "DriverID": "2",
+  var body ='''{
+    "DriverID": "1",
     "From": "Koratty ",
     "FromLocCoordinates": [
       {"Lat": "10.2649", "Lon": "76.3487"}
     ],
     "To": "Applo Angamaly",
     "ToLocCoordinates": [
-      {"Lat": "10.1926", "Lon": "76.3869"}
+      {"Lat": "9.9312", "Lon": "76.2673"}
     ],
     "PatientID": "112122",
-    "PatientName": "Ann Mery Cheriyan",
+    "PatientName": "${items[generateRandomValue()]}",
     "Phone": "9876543210",
     "Address": "ABC",
     "TripType": "DeathCare",
@@ -85,15 +91,15 @@ scheduleTrip() async {
         await EncryptionDecryption.userEncryptAES(body.toString());
         log(encryptedBody.base64.toString());
     var resp = await dio.post(
-        "http://202.88.246.169:49100/api/Driver/Admin/ScheduleAmbulance",
+        "http://202.88.246.169:49100/api/Admin/ScheduleAmbulance",
         data: {'Value': encryptedBody.base64},
         options: Options(headers: {'Authorization': 'Bearer $authToken'}));
 
     
 
-    log('-------------------------------${resp.data.toString()}-------------------------------------------');
+    print('-------------------------------${resp.data.toString()}-------------------------------------------');
   } catch (e) {
-    log(e.toString());
+    print(e.toString());
   }
   //   var decrypt = EncryptionDecryption.userDecryptAES(Encrypted.from64(resp.data));
 
