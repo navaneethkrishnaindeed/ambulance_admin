@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'service/schedule.dart';
 
 Future<void> main()async {  WidgetsFlutterBinding.ensureInitialized();
-log('${DateTime.now()}');
+// log('${DateTime.now()}');
  await login();
  await scheduleTrip();
 

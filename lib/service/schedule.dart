@@ -8,8 +8,9 @@ import 'package:encrypt/encrypt.dart';
 import '../core/encryption.dart';
 import 'secured_shared_preference.dart';
 
-FlutterLocalSecuredStorage securedStorageinstance =
-    FlutterLocalSecuredStorage();
+
+FlutterLocalSecuredStorage securedStorageinstance = FlutterLocalSecuredStorage();
+
 login() async {
   Dio dio = Dio();
   try {
@@ -118,6 +119,7 @@ String reverseString(String input) {
 
 
 initTrip() async {
+
   Dio dio = Dio();
   String key = await storage.read("KEY");
   String ivv = await storage.read("IV");
