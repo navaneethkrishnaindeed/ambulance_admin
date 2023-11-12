@@ -15,7 +15,7 @@ login() async {
   Dio dio = Dio();
   try {
     var resp = await dio.post(
-      "http://192.168.1.116:65330/api/Admin/Login",
+      "http://202.88.246.169:49100/api/Admin/Login",
       data: {
         "Value":
             "3xYVSGyvqflu+Tag15r7e1aPKNMJGoh+nxssazvpInJ992XQ08S2fd7egVWVThz+u0mXHu46WSa1wXhHlu0qG78pRyDi17OTmIpd6pJ4QVGuICDBHMdMYmk9cF9J2OqAmCovOaQWSA3DS4mOXkge5A=="
